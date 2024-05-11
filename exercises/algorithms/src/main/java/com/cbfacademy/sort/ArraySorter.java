@@ -6,9 +6,10 @@ package com.cbfacademy.sort;
 public interface ArraySorter {
     /**
      * Sorts an array
-     * @param arr The array to be sorted.
+     * 
+     * @param arr        The array to be sorted.
      * @param startIndex The index of the start element
-     * @param endIndex The index of the end element
+     * @param endIndex   The index of the end element
      */
     void sort(int[] arr, int startIndex, int endIndex);
 }

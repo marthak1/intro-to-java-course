@@ -2,7 +2,10 @@ package com.cbfacademy;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.Iterator;
 
 public class CollectionsAssignment {
 
@@ -11,12 +14,24 @@ public class CollectionsAssignment {
      * than the indicated integer. The remaining elements retain their original
      * ordering.
      *
-     * @param list   - the list of integers
+     * @param list     - the list of integers
      * @param minValue the minimum value to retain
      */
     public static void removeSmallInts(List<Integer> list, int minValue) {
-        // Your solution must traverse the list from last to first element
-        // removing any values less than minValue.
+        /*
+         * Your solution must traverse the list from last to first element
+         * removing any values less than minValue.
+         * Solution: Use an iterator to traverse the list from last to first element.
+         * For each element encountered, we’ll check if it’s less than the minValue.
+         * If so, we’ll remove it from the list.
+         */
+        Iterator<Integer> iterator = list.iterator();// An iterator over a collection
+        while (iterator.hasNext())/* hasNext() method Returns true if the iteration has more elements. */ {
+            Integer value = iterator.next();/* next() method Returns the next element in the iteration */
+            if (value < minValue) {
+                iterator.remove(); // Remove() method removes the element
+            }
+        }
     }
 
     /**
@@ -27,8 +42,20 @@ public class CollectionsAssignment {
      * @return true if integers contains duplicates, false otherwise
      */
     public static boolean containsDuplicates(Collection<Integer> integers) {
-        // Your solution must not use any loops.
-        return false;
+        // Your solution must not use any loops
+        // Solution-Utilizing a set: A set is a collection that contains no duplicate
+        // elements., we will be utilizing a Set to keep track of unique elements
+        // encountered so
+        // far, if the collection already conatins an element we know its duplicate.
+        Set<Integer> uniqueElements = new HashSet<>();
+        for (Integer num : integers) {
+            if (!uniqueElements.add(num)) {// the " ! "inverts the value of uniqueElements thus if element is not unique
+                                           // will add elememt to set
+                return true; // Duplicate found
+            }
+        }
+        return false; // No duplicates
+
     }
 
     /**
@@ -44,7 +71,7 @@ public class CollectionsAssignment {
      * @param ints1 - the first collection
      * @param ints2 - the second collection
      * @return A sorted ArrayList containing the integers that appear in either
-     * collection.
+     *         collection.
      */
     public static ArrayList<Integer> inEither(Collection<Integer> ints1, Collection<Integer> ints2) {
         // This must be done with no loops.
@@ -62,7 +89,7 @@ public class CollectionsAssignment {
      * @param ints1 - the first collection
      * @param ints2 - the second collection
      * @return An ArrayList containing the integers that appear in both
-     * collections.
+     *         collections.
      */
     public static ArrayList<Integer> inBoth(Collection<Integer> ints1, Collection<Integer> ints2) {
         // This must be done with no loops.
